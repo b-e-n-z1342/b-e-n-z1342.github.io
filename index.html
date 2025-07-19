@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QuasarLinux - Дистрибутив как инструмент</title>
+    <title>QuasarLinux-ALPHA - Дистрибутив как инструмент</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* Все стили остаются без изменений */
         :root {
             --primary-dark: #0a0a1a;
             --primary: #121230;
@@ -253,6 +254,67 @@
             transform: translateY(-5px);
         }
 
+        .screenshots {
+            padding: 80px 0;
+            position: relative;
+            background: linear-gradient(135deg, rgba(18, 18, 48, 0.8), rgba(10, 10, 26, 0.9));
+        }
+
+        .screenshots-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .screenshot-item {
+            flex: 1;
+            min-width: 300px;
+            max-width: 400px;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            transition: var(--transition);
+            border: 1px solid rgba(157, 78, 221, 0.3);
+        }
+
+        .screenshot-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(157, 78, 221, 0.5);
+            border-color: var(--accent-blue);
+        }
+
+        .screenshot-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .screenshot-item:hover .screenshot-img {
+            transform: scale(1.03);
+        }
+
+        .screenshot-caption {
+            padding: 20px;
+            background: rgba(26, 26, 58, 0.8);
+            text-align: center;
+            border-top: 1px solid rgba(157, 78, 221, 0.2);
+        }
+
+        .screenshot-caption h3 {
+            margin-bottom: 10px;
+            color: var(--accent-blue);
+        }
+
+        .screenshot-caption p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
         .features {
             padding: 100px 0;
             position: relative;
@@ -329,6 +391,20 @@
         .feature-card h3 {
             font-size: 1.5rem;
             margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .dev-badge {
+            background: rgba(247, 37, 133, 0.2);
+            color: var(--accent-pink);
+            font-size: 0.7rem;
+            padding: 3px 10px;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
         }
 
         .feature-card p {
@@ -427,6 +503,15 @@
             color: var(--accent-purple);
         }
 
+        .dev-note {
+            color: var(--accent-pink);
+            font-size: 0.85rem;
+            margin-left: 5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
         .download {
             padding: 100px 0;
             text-align: center;
@@ -496,6 +581,18 @@
             font-size: 0.9rem;
             color: var(--text-gray);
             margin-bottom: 20px;
+        }
+
+        .dev-feature {
+            background: rgba(247, 37, 133, 0.1);
+            padding: 8px 12px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: var(--accent-pink);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         footer {
@@ -617,6 +714,11 @@
             .footer-content {
                 grid-template-columns: 1fr;
             }
+            
+            .screenshot-item {
+                min-width: 100%;
+                max-width: 500px;
+            }
         }
     </style>
 </head>
@@ -629,12 +731,12 @@
     <header>
         <div class="container header-container">
             <div class="logo">
-                <div class="quasar-logo.png"></div>
                 <div class="logo-text">QuasarLinux</div>
             </div>
             <nav class="nav-links">
                 <a href="#home">Главная</a>
                 <a href="#features">Особенности</a>
+                <a href="#screenshots">Скриншоты</a>
                 <a href="#philosophy">Философия</a>
                 <a href="#specs">Технологии</a>
                 <a href="#download">Скачать</a>
@@ -650,14 +752,56 @@
         <div class="container">
             <div class="hero-content animate-on-scroll">
                 <h1>QuasarLinux - Ваш универсальный инструмент</h1>
-                <p>Основанный на Artix с OpenRC, с современным окружением KDE Plasma. Только x86_64 архитектура. Включает wine-staging с DXVK/VKD3D и Waydroid для максимальной универсальности.</p>
+                <p>Основанный на Artix с OpenRC, с современным окружением KDE Plasma. Только x86_64 архитектура. Включает wine-staging (в разработке) с DXVK/VKD3D и Waydroid (в разработке) для максимальной универсальности.</p>
                 <div class="hero-btns">
                     <a href="#download" class="btn btn-primary">
                         <i class="fas fa-download"></i> Скачать сейчас
                     </a>
-                    <a href="#features" class="btn btn-secondary">
-                        <i class="fas fa-stars"></i> Узнать больше
+                    <a href="#screenshots" class="btn btn-secondary">
+                        <i class="fas fa-images"></i> Посмотреть скриншоты
                     </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция скриншотов -->
+    <section class="screenshots" id="screenshots">
+        <div class="container">
+            <div class="section-title animate-on-scroll">
+                <h2>QuasarLinux в действии</h2>
+                <p>Посмотрите, как выглядит система в реальном использовании</p>
+            </div>
+            
+            <div class="screenshots-container">
+                <!-- Скриншот 1 -->
+                <div class="screenshot-item animate-on-scroll">
+                    <img src="https://raw.githubusercontent.com/ваш_username/репозиторий/ветка/screenshot1.jpg" 
+                         alt="Рабочий стол QuasarLinux" class="screenshot-img">
+                    <div class="screenshot-caption">
+                        <h3>Рабочий стол Base</h3>
+                        <p>Чистый и функциональный интерфейс KDE Plasma с предустановленными инструментами</p>
+                    </div>
+                </div>
+                
+                <!-- Скриншот 2 -->
+                <div class="screenshot-item animate-on-scroll">
+                    <img src="https://raw.githubusercontent.com/ваш_username/репозиторий/ветка/screenshot2.jpg" 
+                         alt="Запуск Windows приложений" class="screenshot-img">
+                    <div class="screenshot-caption">
+                        <h3>Windows приложения</h3>
+                        <p>Запуск .exe файлов через wine-staging с аппаратным ускорением DXVK/VKD3D</p>
+                    </div>
+                </div>
+                
+                <!-- Скриншот 3 -->
+                <div class="screenshot-item animate-on-scroll">
+                    <img src="https://raw.githubusercontent.com/ваш_username/репозиторий/ветка/screenshot3.jpg" 
+                         alt="Android приложения через Waydroid" class="screenshot-img">
+                    <div class="screenshot-caption">
+                        <h3>Android интеграция</h3>
+                        <p>Запуск мобильных приложений прямо на рабочем столе с помощью Waydroid</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -696,14 +840,14 @@
                     <div class="feature-icon">
                         <i class="fab fa-windows"></i>
                     </div>
-                    <h3>Wine-Staging</h3>
+                    <h3>Wine-Staging <span class="dev-badge"><i class="fas fa-tools"></i> В разработке</span></h3>
                     <p>Продвинутая поддержка Windows приложений с DXVK и VKD3D для игр и профессионального ПО</p>
                 </div>
                 <div class="feature-card animate-on-scroll">
                     <div class="feature-icon">
                         <i class="fab fa-android"></i>
                     </div>
-                    <h3>Waydroid</h3>
+                    <h3>Waydroid <span class="dev-badge"><i class="fas fa-tools"></i> В разработке</span></h3>
                     <p>Полноценная интеграция Android приложений прямо на рабочем столе Linux</p>
                 </div>
                 <div class="feature-card animate-on-scroll">
@@ -747,17 +891,18 @@
                 <div class="spec-card animate-on-scroll">
                     <h3><i class="fas fa-cogs"></i> Основные компоненты</h3>
                     <ul class="spec-list">
-                        <li><i class="fas fa-check"></i> Ядро Linux-zen</li>
+                        <li><i class="fas fa-check"></i> Ядро Linux zen</li>
                         <li><i class="fas fa-check"></i> Система инициализации: OpenRC</li>
                         <li><i class="fas fa-check"></i> Пакетный менеджер: Pacman</li>
+                        <li><i class="fas fa-check"></i> Файловая система: ext4 по умолчанию   (временно)</li>
                     </ul>
                 </div>
                 <div class="spec-card animate-on-scroll">
                     <h3><i class="fas fa-desktop"></i> Графическая среда</h3>
                     <ul class="spec-list">
-                        <li><i class="fas fa-check"></i> KDE Plasma 6.4</li>
-                        <li><i class="fas fa-check"></i> KDE Frameworks 6.15</li>
-                        <li><i class="fas fa-check"></i> Qt 6</li>
+                        <li><i class="fas fa-check"></i> KDE Plasma 6.4.x</li>
+                        <li><i class="fas fa-check"></i> KDE Frameworks 6.x</li>
+                        <li><i class="fas fa-check"></i> Qt 6.x</li>
                         <li><i class="fas fa-check"></i> Wayland по умолчанию с X11 поддержкой</li>
                         <li><i class="fas fa-check"></i> Темы и иконки: Breeze модифицированная</li>
                     </ul>
@@ -765,9 +910,10 @@
                 <div class="spec-card animate-on-scroll">
                     <h3><i class="fas fa-box-open"></i> Включенное ПО</h3>
                     <ul class="spec-list">
-                        <li><i class="fas fa-check"></i> Wine-Staging с DXVK, VKD3D</li>
-                        <li><i class="fas fa-check"></i> Waydroid</li>
-                        <li><i class="fas fa-check"></i> Firefox</li>
+                        <li><i class="fas fa-check"></i> Wine-Staging  с DXVK, VKD3D 
+                            <span class="dev-note"><i class="fas fa-tools"></i> в разработке</span></li>
+                        <li><i class="fas fa-check"></i> Waydroid
+                            <span class="dev-note"><i class="fas fa-tools"></i> в разработке</span></li>
                         <li><i class="fas fa-check"></i> Полный набор кодеков и драйверов</li>
                     </ul>
                 </div>
@@ -785,23 +931,26 @@
                 </div>
                 <div class="download-box animate-on-scroll">
                     <div class="version-info">
-                        <h3>Текущая версия: QuasarLinux-ALPHA-DEV</h3>
+                        <h3>Текущая версия: QuasarLinux 2025.07</h3>
                         <p>Только для x86_64 архитектуры | Размер: 2.1 GB</p>
                     </div>
-                    <p>Мы пока временно обитаем на Google диск</p>
+                    <p>Рекомендуется проверять контрольную сумму после загрузки</p>
                     <div class="download-options">
                         <div class="option-card animate-on-scroll">
-                            <h4>Графическая</h4>
-                            <p>Plasma</p>
+                            <h4>Минимальная Plasma версия</h4>
+                            <p>Livecd для установки через "quasar-install"</p>
+                            <div class="dev-feature">
+                                <i class="fas fa-tools"></i> Wine и Waydroid в активной разработке
+                            </div>
                             <a href="https://drive.google.com/file/d/1br1FgtgUvbP7bp6K-Fu7fK0t0ZBFa45O/view" class="btn btn-primary">
                                 <i class="fas fa-download"></i> Скачать (ISO)
                             </a>
                         </div>
                         <div class="option-card animate-on-scroll">
                             <h4>Минимальная</h4>
-                            <p>Только базовая система, без DE</p>
+                            <p>Только базовая система с KDE Plasma</p>
                             <a href="#" class="btn btn-secondary">
-                                <i class="fas fa-download"></i> Скачать (ISO)
+                                <i class="fas fa-download"></i> ОТСУДСТВУЕТ! 
                             </a>
                         </div>
                     </div>
