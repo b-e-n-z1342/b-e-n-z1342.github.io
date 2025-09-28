@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ROL — Rufus on Linux</title>
+  <meta name="description" content="ROL (Rufus on Linux) — эесперементальный инструмент для создания загрузочных USB-накопителей под Linux. Простой, быстрый и удобный.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #000;
+      --bg-soft: #0a0a0a;
+      --card-bg: #121212;
+      --text: #ffffff;
+      --text-muted: #a0a0a0;
+      --accent: #6d5dfc;
+      --accent-hover: #8a7dff;
+      --border-radius: 16px;
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 2.5rem;
+      background: rgba(10, 10, 10, 0.85);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    header img {
+      height: 36px;
+      transition: var(--transition);
+    }
+
+    header img:hover {
+      transform: scale(1.06);
+    }
+
+    .logo-text {
+      font-weight: 700;
+      font-size: 1.2rem;
+      background: linear-gradient(90deg, var(--accent), #a396ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-weight: 500;
+      font-size: 1rem;
+      position: relative;
+      transition: var(--transition);
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 0 8%;
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    .hero-content {
+      max-width: 700px;
+      z-index: 2;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 4.5vw, 4.2rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(90deg, #fff, #aaa);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      max-width: 600px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      background: var(--card-bg);
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px rgba(109, 93, 252, 0.4);
+      background: var(--accent-hover);
+    }
+
+    /* Sections */
+    section {
+      padding: 6rem 5%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      font-weight: 700;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    h2::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: var(--accent);
+      margin: 0.75rem auto 0;
+      border-radius: 2px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 1.8rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: var(--transition);
+    }
+
+    .feature-card:hover {
+      border-color: rgba(109, 93, 252, 0.3);
+      transform: translateY(-4px);
+    }
+
+    .feature-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.8rem;
+      color: var(--text);
+    }
+
+    .feature-card p {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      background: rgba(255, 193, 7, 0.2);
+      color: #ffc107;
+      margin-bottom: 1.5rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      background: var(--bg-soft);
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 1rem;
+      }
+      nav {
+        display: none;
+      }
+      .hero {
+        text-align: center;
+        justify-content: center;
+        padding-top: 80px;
+      }
+      .hero-content {
+        margin: 0 auto;
+      }
+      section {
+        padding: 4rem 5%;
+      }
+      .hero-buttons {
+        justify-content: center;
+      }
+      .footer-links {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <img src="https://raw.githubusercontent.com/b-e-n-z1342/QuasarDEV-XLAM/main/logo.png" alt="QuasarFoks Logo">
+      <span class="logo-text">QuasarFoks</span>
+    </div>
+    <nav>
+      <a href="https://b-e-n-z1342.github.io">Главная</a>
+      <a href="https://b-e-n-z1342.github.io/QuasarLinux/">QuasarLinux</a>
+      <a href="https://t.me/quasar_foks">Телеграм</a>
+      <a href="https://github.com/b-e-n-z1342">GitHub</a>
+      <a href="https://gitlab.com/users/Quasar_benz/projects">GitLab</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <div class="status-badge">В разработке</div>
+        <h1>ROL</h1>
+        <p><strong>Rufus on Linux</strong> — инструмент для создания загрузочных USB-накопителей под Linux. Простой, быстрый и ориентированный на пользователя.</p>
+        <div class="hero-buttons">
+          <a href="https://gitlab.com/Quasar_benz/rol" class="btn btn-primary">GitLab-репозиторий</a>
+          <a href="https://t.me/quasar_foks" class="btn">Сообщество</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="features">
+      <h2>Возможности</h2>
+      <div class="features">
+        <div class="feature-card">
+          <h3>Загрузочные USB</h3>
+          <p>Создавайте загрузочные флешки с любыми ISO-образами Linux, Windows и других ОС.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Простой интерфейс</h3>
+          <p>Интуитивно понятный GUI, вдохновлённый Rufus, но адаптированный под Linux.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Открытый код</h3>
+          <p>Полностью open-source по лицензией MIT. Вы можете изучать, модифицировать и улучшать ROL.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Поддержка форматов</h3>
+          <p>FAT32, NTFS, exFAT, ISO9660 и другие файловые системы для максимальной совместимости.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <h2>О проекте</h2>
+      <p style="text-align: center; max-width: 800px; margin: 0 auto; color: var(--text-muted);">
+        ROL разрабатывается как часть экосистемы QuasarFoks. Мы стремимся восполнить пробел в удобных инструментах для записи образов на Linux, особенно для новичков и энтузиастов.
+        <br><br>
+        Проект находится на ранней стадии разработки, но уже принимает контрибьюции и идеи от сообщества!
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="https://b-e-n-z1342.github.io/QuasarLinux/">QuasarLinux</a>
+      <a href="https://t.me/quasar_foks">Телеграм</a>
+      <a href="https://github.com/b-e-n-z1342">GitHub</a>
+      <a href="https://gitlab.com/Quasar_benz/rol">GitLab (ROL)</a>
+    </div>
+    <p>© 2025 QuasarFoks Community. ROL распространяется под открытой лицензией.</p>
+  </footer>
+</body>
+</html>
