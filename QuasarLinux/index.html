@@ -55,6 +55,12 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
 
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
     header img {
       height: 36px;
       transition: var(--transition);
@@ -62,6 +68,23 @@
 
     header img:hover {
       transform: scale(1.06);
+    }
+
+    .release-tag {
+      background: linear-gradient(90deg, #00f7ff, #00c2ff);
+      color: #000;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      border-radius: 10px;
+      white-space: nowrap;
+      box-shadow: 0 0 6px rgba(0, 247, 255, 0.5);
+      animation: pulseTag 2s infinite;
+    }
+
+    @keyframes pulseTag {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.07); }
     }
 
     nav a {
@@ -102,6 +125,7 @@
       padding: 0 8%;
       overflow: hidden;
       background: var(--bg);
+      margin-top: 60px; /* компенсация фиксированного хедера */
     }
 
     .hero-content {
@@ -119,10 +143,11 @@
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      white-space: nowrap;      
-      overflow: hidden;          
-      text-overflow: ellipsis;   
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
+
     .hero p {
       font-size: 1.2rem;
       color: var(--text-muted);
@@ -229,6 +254,7 @@
       transform: translateY(-4px);
       box-shadow: 0 8px 25px rgba(109, 93, 252, 0.4);
     }
+
     .screenshots-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -282,14 +308,14 @@
       }
     }
 
-    /* Mobile menu (optional enhancement) */
+    /* Mobile */
     @media (max-width: 768px) {
       header {
         padding: 1rem;
       }
 
       nav {
-        display: none; /* Для простоты — в реальном проекте добавить бургер-меню */
+        display: none;
       }
 
       .hero {
@@ -309,12 +335,20 @@
       section {
         padding: 4rem 5%;
       }
+
+      .release-tag {
+        font-size: 0.65rem;
+        padding: 0.15rem 0.5rem;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <img src="https://raw.githubusercontent.com/b-e-n-z1342/QuasarDEV-XLAM/main/logo.png" alt="QuasarLinux Logo">
+    <div class="logo-container">
+      <img src="https://raw.githubusercontent.com/b-e-n-z1342/QuasarDEV-XLAM/main/logo.png" alt="QuasarLinux Logo">
+      <div class="release-tag">QuasarLinux-REV-1 ВЫШЕЛ!</div>
+    </div>
     <nav>
       <a href="#">Главная</a>
       <a href="#har">Особенности</a>
@@ -329,7 +363,7 @@
   <section class="hero">
     <div class="hero-content">
       <h1>QuasarLinux</h1>
-      <p>Современный, гибкий и лёгкий дистрибутив Linux на базе OpenRC с поддержкой множества окружений рабочего стола и ядер.</p>
+      <p>Современный, гибкий и лёгкий дистрибутив Linux на базе Artix с OpenRC, с поддержкой множества окружений рабочего стола и ядер.</p>
     </div>
     <div class="hero-img">
       <img src="https://raw.githubusercontent.com/b-e-n-z1342/QuasarDEV-XLAM/main/laptop.png" alt="QuasarLinux на ноутбуке">
@@ -356,16 +390,17 @@
       <img src="https://github.com/b-e-n-z1342/b-e-n-z1342.github.io/blob/main/quasar-image/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%20%D0%BE%D1%82%202025-08-28%2016-38-25.png?raw=true" alt="QuasarLinux — Hyprland">
       <img src="https://github.com/b-e-n-z1342/QuasarDEV-XLAM/blob/main/lxde.bmp?raw=true" alt="QuasarLinux — LXDE">
       <img src="https://github.com/b-e-n-z1342/QuasarDEV-XLAM/blob/main/lxqt.png?raw=true" alt="QuasarLinux — LXQT">
-      <img src="" alt="QuasarLinux — SWAY">
       <img src="https://github.com/b-e-n-z1342/b-e-n-z1342.github.io/blob/main/quasar-image/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%20%D0%BE%D1%82%202025-08-28%2016-43-46.png?raw=true" alt="QuasarLinux — GNOME">
       <img src="https://github.com/b-e-n-z1342/QuasarDEV-XLAM/blob/main/screen.png?raw=true" alt="QuasarLinux — i3wm">
+      <!-- Убран пустой src -->
     </div>
-  </section> 
+  </section>
 
-  <section class="downloads">
+  <section class="downloads" id="downloads">
     <h2>Скачать QuasarLinux</h2>
-    <a href="https://github.com/b-e-n-z1342/QuasarLinux/releases/download/v0.5-beta.2/QuasarLinux-LIVE.iso">Stable-версия</a>
-    <a href="https://github.com/b-e-n-z1342/QuasarLinux/releases/download/REV-0.6-DEV/QuasarLinux-TESTING.iso">Testing-сборка</a>
+    <a href="https://github.com/b-e-n-z1342/QuasarLinux/releases/download/v0.5-beta.2/QuasarLinux-LIVE.iso">Релизная версия</a>
+    <a href="https://github.com/b-e-n-z1342/QuasarLinux/releases/download/v0.5-beta.2/QuasarLinux-LIVE.iso">Старая-версия</a>
+    <a href="https://github.com/b-e-n-z1342/QuasarLinux/releases/download/REV-0.6-DEV/QuasarLinux-TESTING.iso">TESTING-версия</a>
   </section>
 
   <footer>
