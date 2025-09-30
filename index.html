@@ -78,6 +78,23 @@
       background-clip: text;
       color: transparent;
     }
+    .release-badge {
+      background: linear-gradient(90deg, #ff9a00, #ff6a00);
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.25rem 0.6rem;
+      border-radius: 12px;
+      margin-left: 12px;
+      white-space: nowrap;
+      box-shadow: 0 2px 6px rgba(255, 77, 148, 0.4);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
 
     nav a {
       color: var(--text);
@@ -443,6 +460,8 @@
     <div class="logo-container">
       <img src="https://raw.githubusercontent.com/b-e-n-z1342/QuasarDEV-XLAM/main/logo.png" alt="QuasarFoks Logo">
       <span class="logo-text">QuasarFoks</span>
+    <!-- Mini release badge -->
+      <div class="release-badge">QuasarLinux-REV-1 ! ! !</div>
     </div>
     <nav>
       <a href="#">Главная</a>
@@ -453,62 +472,6 @@
       <a href="https://gitlab.com/users/Quasar_benz/projects">GitLab</a>
     </nav>
   </header>
-  <!-- Release Banner -->
-<div id="release-banner" class="release-banner">
-  <p>🎉 Релиз <strong>QuasarLinux-REV-1</strong> ! ! !</p>
-  <button class="close-banner" aria-label="Закрыть уведомление" onclick="document.getElementById('release-banner').style.display='none'">×</button>
-</div>
-
-<style>
-  .release-banner {
-    background: linear-gradient(90deg, #6d5dfc, #8a7dff);
-    color: white;
-    text-align: center;
-    padding: 0.8rem 2rem;
-    font-weight: 600;
-    font-size: 1.1rem;
-    position: relative;
-    z-index: 999;
-    box-shadow: 0 4px 12px rgba(109, 93, 252, 0.3);
-  }
-
-  .release-banner strong {
-    color: #fff;
-    text-decoration: underline;
-  }
-
-  .close-banner {
-    position: absolute;
-    right: 1.2rem;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.2);
-    border: none;
-    color: white;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    font-weight: bold;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s;
-  }
-
-  .close-banner:hover {
-    background: rgba(0, 0, 0, 0.2);
-  }
-
-  @media (max-width: 768px) {
-    .release-banner p {
-      font-size: 1rem;
-    }
-    .close-banner {
-      right: 1rem;
-    }
-  }
-</style>
 
   <main>
     <section class="hero">
@@ -548,7 +511,6 @@
           <p>Транслятор команд systemd для OpenRC. Позволяет использовать привычные systemd-команды в OpenRC-системах.</p>
           <div class="project-status status-stable">Стабильный</div>
           <div class="project-links">
-            <a href="https://b-e-n-z1342.github.io/SystemdRC/">Сайт</a>
             <a href="https://github.com/b-e-n-z1342/Systemd-RC">GitHub</a>
           </div>
         </div>
@@ -572,7 +534,6 @@
           <p>Аналог artix-chroot, написанный на Go. Быстрый и удобный инструмент для chroot-операций.</p>
           <div class="project-status status-stable">Стабильный</div>
           <div class="project-links">
-            <a href="https://b-e-n-z1342.github.io/Fastchroot/">Сайт Fast-chroot</a>
             <a href="https://github.com/b-e-n-z1342/Fast-chroot">GitHub</a>
           </div>
         </div>
