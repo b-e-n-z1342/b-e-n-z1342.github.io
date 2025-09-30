@@ -453,6 +453,62 @@
       <a href="https://gitlab.com/users/Quasar_benz/projects">GitLab</a>
     </nav>
   </header>
+  <!-- Release Banner -->
+<div id="release-banner" class="release-banner">
+  <p>🎉 Релиз <strong>QuasarLinux-REV-1</strong> ! ! !</p>
+  <button class="close-banner" aria-label="Закрыть уведомление" onclick="document.getElementById('release-banner').style.display='none'">×</button>
+</div>
+
+<style>
+  .release-banner {
+    background: linear-gradient(90deg, #6d5dfc, #8a7dff);
+    color: white;
+    text-align: center;
+    padding: 0.8rem 2rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    position: relative;
+    z-index: 999;
+    box-shadow: 0 4px 12px rgba(109, 93, 252, 0.3);
+  }
+
+  .release-banner strong {
+    color: #fff;
+    text-decoration: underline;
+  }
+
+  .close-banner {
+    position: absolute;
+    right: 1.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+
+  .close-banner:hover {
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  @media (max-width: 768px) {
+    .release-banner p {
+      font-size: 1rem;
+    }
+    .close-banner {
+      right: 1rem;
+    }
+  }
+</style>
 
   <main>
     <section class="hero">
