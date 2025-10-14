@@ -55,6 +55,27 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
 
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-container img {
+      height: 32px; /* или другая подходящая высота */
+      width: auto;
+      border-radius: 6px; /* опционально */
+    }
+
+    .logo-text {
+      font-weight: 700;
+      font-size: 1.25rem;
+      background: linear-gradient(90deg, #fff, #aaa);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
     nav a {
       color: var(--text);
       text-decoration: none;
@@ -81,15 +102,36 @@
     }
 
     nav a:hover::after {
-      width: 100%;
+      width.logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-container img {
+      height: 32px; /* или другая подходящая высота */
+      width: auto;
+      border-radius: 6px; /* опционально */
+    }
+
+    .logo-text {
+      font-weight: 700;
+      font-size: 1.25rem;
+      background: linear-gradient(90deg, #fff, #aaa);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }: 100%;
     }
 
     /* Hero */
+   /* Hero */
     .hero {
       position: relative;
       height: 100vh;
       display: flex;
       align-items: center;
+      justify-content: flex-start; /* ← контент прижат к левому краю */
       padding: 0 8%;
       overflow: hidden;
       background: var(--bg);
@@ -100,6 +142,7 @@
       max-width: 600px;
       z-index: 2;
       animation: fadeInUp 1s ease-out;
+      /* УБРАНО margin: 0 auto — чтобы не центрировалось */
     }
 
     .hero h1 {
@@ -111,9 +154,9 @@
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      /* УБРАНО white-space: nowrap — чтобы не обрезалось на узких экранах */
+      overflow: visible; /* или просто удали эти три строки */
+      text-overflow: unset;
     }
 
     .hero p {
@@ -123,21 +166,25 @@
       max-width: 500px;
     }
 
+    /* Изображение ноутбука — без обрезания */
     .hero-img {
       position: absolute;
-      right: -50px;
+      right: 5%; /* отступ от правого края, а не -50px */
       top: 50%;
-      transform: translateY(-50%) scale(1.05);
+      transform: translateY(-50%);
       z-index: 1;
       opacity: 0.85;
       filter: drop-shadow(0 20px 30px rgba(0,0,0,0.5));
       animation: floatIn 1.2s ease-out 0.3s both;
+      max-width: 50%; /* ограничение по ширине контейнера */
     }
 
     .hero-img img {
-      max-width: min(650px, 80vw);
+      width: 100%;
       height: auto;
       display: block;
+      object-fit: contain; /* ← гарантирует, что изображение не обрежется */
+      object-position: right bottom;
     }
 
     /* Sections */
@@ -308,6 +355,10 @@
 </head>
 <body>
   <header>
+    <div class="logo-container">
+      <img src="https://raw.githubusercontent.com/b-e-n-z1342/QuasarDEV-XLAM/main/logo.png" alt="QuasarFoks Logo">
+      <span class="logo-text">QuasarLinux</span>
+    </div>
     <nav>
       <a href="#">Главная</a>
       <a href="#har">Особенности</a>
@@ -356,8 +407,8 @@
 
   <section class="downloads" id="downloads">
     <h2>Скачать QuasarLinux</h2>
-    <a href="https://github.com/b-e-n-z1342/QuasarLinux/releases/download/REV-1/QuasarLinux-REV-1.iso">Стабильная версия</a>
-    <a href="https://github.com/b-e-n-z1342/QuasarLinux/releases/download/REV-0.6-DEV/QuasarLinux-TESTING.iso">Тестовая версия</a>
+    <a href="https://github.com/b-e-n-z1342/QuasarLinux/releases/download/REV-1-Debug/QuasarLinux-REV-1-Debug.iso">Стабильная версия</a>
+    <a href="https://github.com/b-e-n-z1342/QuasarLinux/releases/download/REV-1/QuasarLinux-REV-1.iso">Тестовая версия</a>
   </section>
 
   <footer>
