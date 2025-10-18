@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QuasarFoks — Официальная политика и структура</title>
+  <meta name="description" content="Официальные документы сообщества QuasarFoks: политика, правила присоединения, организационная структура.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #000;
+      --bg-soft: #0a0a0a;
+      --card-bg: #121212;
+      --text: #ffffff;
+      --text-muted: #a0a0a0;
+      --accent: #6d5dfc;
+      --accent-hover: #8a7dff;
+      --border-radius: 16px;
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 2.5rem;
+      background: rgba(10, 10, 10, 0.85);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-container img {
+      height: 32px;
+      width: auto;
+      border-radius: 6px;
+    }
+
+    .logo-text {
+      font-weight: 700;
+      font-size: 1.25rem;
+      background: linear-gradient(90deg, #fff, #aaa);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-weight: 500;
+      font-size: 1rem;
+      position: relative;
+      transition: var(--transition);
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    main {
+      margin-top: 80px;
+      padding: 4rem 5%;
+      max-width: 850px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      margin-bottom: 2rem;
+      background: linear-gradient(90deg, #fff, #aaa);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    h2 {
+      font-size: 1.45rem;
+      margin: 1.7rem 0 1rem;
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .section {
+      margin-bottom: 3.5rem;
+    }
+
+    .role, .rule-item {
+      background: var(--card-bg);
+      padding: 1.4rem;
+      border-radius: var(--border-radius);
+      margin-bottom: 1.2rem;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .role h3, .rule-item h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.6rem;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    p, ul {
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+
+    ul {
+      padding-left: 1.5rem;
+    }
+
+    li {
+      margin-bottom: 0.55rem;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2.2rem;
+      background: var(--bg-soft);
+      color: var(--text-muted);
+      font-size: 0.93rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 1rem;
+      }
+      nav {
+        display: none;
+      }
+      main {
+        padding: 3rem 5%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <img src="https://raw.githubusercontent.com/b-e-n-z1342/QuasarDEV-XLAM/main/logo.png" alt="QuasarFoks Logo">
+      <span class="logo-text">QuasarFoks политика конфиденциальности</span>
+    </div>
+    <nav>
+      <a href="#policy">Политика</a>
+      <a href="#rules">Правила</a>
+      <a href="#structure">Структура</a>
+      <a href="https://github.com/b-e-n-z1342">GitHub</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Политика -->
+    <section id="policy" class="section">
+      <h1>Официальная политика сообщества QuasarFoks</h1>
+      <p>Сообщество QuasarFoks (далее — «Сообщество») является добровольным, некоммерческим, open-source объединением лиц, действующим на принципах децентрализованного участия, технической прозрачности и пользовательского контроля. Сообщество не является юридическим лицом, коммерческой организацией, стартапом или государственной структурой.</p>
+
+      <h2>1. Принципы взаимодействия</h2>
+      <p>Все участники обязаны соблюдать нормы уважительного общения. Запрещены: оскорбления, дискриминация, принуждение, агрессивное поведение, а также обсуждение тем, не относящихся к технической или организационной деятельности Сообщества.</p>
+      <p>Категорически запрещено обсуждение: вооружённых конфликтов, политических партий, пропаганды наркотических веществ, алкоголя, табачной продукции и иных тем, способных вызвать раскол или нарушить безопасную среду участников.</p>
+
+      <h2>2. Интеллектуальная собственность и лицензирование</h2>
+      <p>Все проекты Сообщества распространяются под открытыми лицензиями (MIT, BSD, GPL, Apache). Любое производное произведение обязано чётко указывать первоисточник и сохранять условия лицензии. Форки без технического или этического обоснования не поощряются.</p>
+
+      <h2>3. Организационная прозрачность</h2>
+      <p>Руководство Сообществом осуществляет основной мейнтейнер. Все проекты находятся под кураторством назначенных мейнтейнеров, подотчётных основному мейнтейнеру. Решения принимаются открыто, с возможностью обсуждения в рамках технической целесообразности.</p>
+
+      <h2>4. Конфиденциальность</h2>
+      <p>Сообщество не осуществляет сбор, хранение или обработку персональных данных. Используемые сторонние платформы (включая, но не ограничиваясь: GitHub, GitLab, Telegram) могут обрабатывать данные в соответствии с собственными политиками конфиденциальности, за что Сообщество ответственности не несёт.</p>
+
+      <h2>5. Изменение настоящей политики</h2>
+      <p>Настоящая политика может быть изменена по усмотрению основного мейнтейнера. Уведомление об изменениях публикуется в официальных Telegram-каналах:
+        <a href="https://t.me/QuasarFoks" target="_blank">@QuasarFoks</a>,
+        <a href="https://t.me/QuasarLinux" target="_blank">@QuasarLinux</a>,
+        <a href="https://t.me/BlazarLinux" target="_blank">@BlazarLinux</a>.
+      </p>
+    </section>
+
+    <!-- Правила присоединения -->
+    <section id="rules" class="section">
+      <h1>Правила присоединения к Сообществу</h1>
+      <div class="rule-item">
+        <h3>1. Соответствие ценностям</h3>
+        <p>Участник обязан разделять ключевые ценности: открытость, ремонтопригодность, пользовательский контроль и техническую честность.</p>
+      </div>
+      <div class="rule-item">
+        <h3>2. Поведенческие нормы</h3>
+        <p>Любые формы токсичного поведения влекут немедленное исключение без предварительного предупреждения.</p>
+      </div>
+      <div class="rule-item">
+        <h3>3. Порядок вступления</h3>
+        <p>Формальных процедур вступления не предусмотрено. Заинтересованные лица могут инициировать контакт через официальные Telegram-каналы.</p>
+      </div>
+      <div class="rule-item">
+        <h3>4. Форки и модификации</h3>
+        <p>Форки допустимы исключительно при наличии обоснованной технической или этической необходимости. Форки ради самопиара или дублирования функционала не допускаются.</p>
+      </div>
+      <div class="rule-item">
+        <h3>5. Финансовая независимость</h3>
+        <p>Сообщество не имеет единого бюджета. Пожертвования разрешены участникам исключительно для покрытия личных технических расходов (оборудование, хостинг и т.п.).</p>
+      </div>
+    </section>
+
+    <!-- Структура -->
+    <section id="structure" class="section">
+      <h1>Организационная структура</h1>
+      <div class="role">
+        <h3>BDFL</h3>
+        <p>Единоличный руководитель Сообщества. Обладает правом окончательного решения по всем вопросам стратегического и технического характера.</p>
+      </div>
+      <div class="role">
+        <h3>Мейнтейнеры проектов</h3>
+        <p>Ответственные за сопровождение конкретных проектов: <strong>systemd-rc</strong>, <strong>QuasarLinux</strong>, <strong>BlazarLinux</strong>, <strong>ROL</strong>. Подчиняются основному мейнтейнеру.</p>
+      </div>
+      <div class="role">
+        <h3>Контентбьютеры</h3>
+        <p>Осуществляют документирование изменений, подготовку анонсов и публикаций. Не участвуют в разработке кода.</p>
+      </div>
+      <div class="role">
+        <h3>Тестеровщики</h3>
+        <p>Проводят независимое тестирование релизов и сборок. Могут участвовать в любом проекте по собственному усмотрению.</p>
+      </div>
+      <div class="role">
+        <h3>Финансовая модель</h3>
+        <p>Донаты носят исключительно индивидуальный характер и не аккумулируются на уровне Сообщества. Использование средств — на усмотрение получателя, при условии соответствия целям технической поддержки.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 QuasarFoks. Настоящий документ не является юридическим договором и не создаёт обязательств в рамках гражданского законодательства. Всё открыто. Всё под контролем.</p>
+  </footer>
+</body>
+</html>

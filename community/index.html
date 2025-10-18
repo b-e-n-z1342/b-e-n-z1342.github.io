@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Сообщество QuasarFoks</title>
+  <meta name="description" content="Присоединяйся к QuasarFoks — open-source сообществу, где важны контроль, прозрачность и ремонтопригодность.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #000;
+      --bg-soft: #0a0a0a;
+      --card-bg: #121212;
+      --text: #ffffff;
+      --text-muted: #a0a0a0;
+      --accent: #6d5dfc;          /* ← ОСНОВНОЙ ЦВЕТ АКЦЕНТА (кнопки, подчёркивания) */
+      --accent-hover: #8a7dff;
+      --border-radius: 16px;
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 2.5rem;
+      background: rgba(10, 10, 10, 0.85);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-container img {
+      height: 32px;
+      width: auto;
+      border-radius: 6px;
+    }
+
+    .logo-text {
+      font-weight: 700;
+      font-size: 1.25rem;
+      background: linear-gradient(90deg, #fff, #aaa);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-weight: 500;
+      font-size: 1rem;
+      position: relative;
+      transition: var(--transition);
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 0 8%;
+      margin-top: 60px;
+      position: relative;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 800;
+      margin-bottom: 1.2rem;
+      background: linear-gradient(90deg, #fff, #aaa);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin-bottom: 2rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      background: var(--accent);
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 50px;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(109, 93, 252, 0.4);
+    }
+
+    main {
+      padding: 5rem 5%;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin: 2.5rem 0 2rem;
+      text-align: center;
+      position: relative;
+    }
+
+    h2::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: var(--accent);
+      margin: 0.75rem auto 0;
+      border-radius: 2px;
+    }
+
+    .roles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.8rem;
+      margin-top: 2rem;
+    }
+
+    .role-card {
+      background: var(--card-bg);
+      padding: 1.8rem;
+      border-radius: var(--border-radius);
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: var(--transition);
+    }
+
+    .role-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(109, 93, 252, 0.2);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    .role-card h3 {
+      font-size: 1.35rem;
+      margin-bottom: 0.8rem;
+      color: var(--text);
+    }
+
+    .role-card p {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2.5rem;
+      background: var(--bg-soft);
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      margin-top: 4rem;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: var(--card-bg);
+      padding: 2.5rem;
+      border-radius: var(--border-radius);
+      max-width: 600px;
+      width: 90%;
+      border: 1px solid rgba(255,255,255,0.1);
+      position: relative;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 1rem;
+      right: 1.2rem;
+      font-size: 1.5rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    .close-modal:hover {
+      color: var(--text);
+    }
+
+    .platforms {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    /* ——— ВОТ ЭТО МЕСТО ДЛЯ ЦВЕТА КНОПОК В МОДАЛКЕ ——— */
+    .platform-btn {
+      display: block;
+      padding: 0.9rem;
+      text-align: center;
+      background: var(--accent);          /* ← ИСПОЛЬЗУЕТ ОБЩИЙ АКЦЕНТ */
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: 600;
+      transition: var(--transition);
+      border: none;
+    }
+
+    .platform-btn:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(109, 93, 252, 0.3);
+    }
+    /* ——— КОНЕЦ ——— */
+
+    .instructions {
+      color: var(--text-muted);
+      margin-top: 1.2rem;
+      line-height: 1.7;
+    }
+
+    .instructions strong {
+      color: var(--text);
+    }
+
+    .instructions code {
+      background: rgba(255,255,255,0.1);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+      color: var(--text);
+    }
+
+    .telegram-dropdown {
+      position: relative;
+      display: inline-block;
+      margin-left: 1.5rem;
+    }
+
+    .telegram-trigger {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      position: relative;
+      transition: var(--transition);
+    }
+
+    .telegram-trigger::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    .telegram-trigger:hover {
+      color: var(--accent);
+    }
+
+    .telegram-trigger:hover::after {
+      width: 100%;
+    }
+
+    .telegram-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: var(--card-bg);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      min-width: 180px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+      z-index: 1001;
+      padding: 0.5rem 0;
+      margin-top: 8px;
+    }
+
+    .telegram-dropdown:hover .telegram-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .telegram-menu a {
+      color: var(--text-muted);
+      padding: 0.6rem 1.2rem;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: var(--transition);
+    }
+
+    .telegram-menu a:hover {
+      color: var(--accent);
+      background: rgba(109, 93, 252, 0.1);
+    }
+    @media (max-width: 768px) {
+      header {
+        padding: 1rem;
+      }
+      nav {
+        display: none;
+      }
+      .hero {
+        text-align: center;
+        align-items: center;
+        padding-top: 80px;
+      }
+      .hero p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <img src="https://raw.githubusercontent.com/b-e-n-z1342/QuasarDEV-XLAM/main/logo.png" alt="QuasarFoks Logo">
+      <span class="logo-text">QuasarFoks</span>
+    </div>
+    <nav>
+      <a href="https://b-e-n-z1342.github.io">Главная</a>
+      <a href="https://b-e-n-z1342.github.io/policy">Политика</a>
+      <div class="telegram-dropdown">
+        <a href="#" class="telegram-trigger">Telegram</a>
+        <div class="telegram-menu">
+          <a href="https://t.me/quasarfoks" target="_blank">@QuasarFoks</a>
+          <a href="https://t.me/quasarlinux" target="_blank">@QuasarLinux</a>
+          <a href="https://t.me/blazarlinux" target="_blank">@BlazarLinux</a>
+        </div>
+      </div>
+      <a href="https://github.com/b-e-n-z1342" target="_blank">GitHub</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Добро пожаловать в QuasarFoks</h1>
+    <p>Мы — open-source сообщество энтузиастов, объединённых идеей контроля, прозрачности и ремонтопригодности в мире Linux.</p>
+    <a class="btn" id="join-btn">Участвовать</a>
+  </section>
+
+  <main>
+    <h2>Зачем это нужно?</h2>
+    <p>Современные дистрибутивы становятся всё более закрытыми, непрозрачными и трудно ремонтируемыми. Мы создаём альтернативу — системы, где пользователь остаётся хозяином своего устройства. Каждый проект в QuasarFoks отвечает на один вопрос: <strong>«Даёт ли это пользователю контроль?»</strong></p>
+
+    <h2>Как присоединиться?</h2>
+    <p>Нажмите кнопку «Участвовать» выше. Донатов нет — только физическая помощь: код, тесты, документация.</p>
+
+    <h2>Разделение ролей</h2>
+    <div class="roles-grid">
+      <div class="role-card">
+        <h3>BDFL</h3>
+        <p><a href="https://github.com/b-e-n-z1342" target="_blank">b-e-n-z1342</a> — основатель и BDFL (Benevolent Dictator For Life) сообщества QuasarFoks. Все ключевые технические и стратегические решения принимаются им.</p>
+      </div>
+      <div class="role-card">
+        <h3>Мейнтейнеры проектов</h3>
+        <p>Ведут конкретные проекты: QuasarLinux, BlazarLinux, ROL, systemd-rc и др.</p>
+      </div>
+      <div class="role-card">
+        <h3>Контентбьютеры</h3>
+        <p>Делают технические изменения понятными через статьи и посты.</p>
+      </div>
+      <div class="role-card">
+        <h3>Тестеровщики</h3>
+        <p>Проверяют стабильность сборок на реальных системах.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 QuasarFoks. Открыто. Прозрачно. Под контролем.</p>
+  </footer>
+
+  <!-- Modal -->
+  <div class="modal" id="join-modal">
+    <div class="modal-content">
+      <button class="close-modal" id="close-modal">&times;</button>
+      <h2>Как помочь проекту</h2>
+      <p>Донатов нет. Только физическая помощь: код, тесты, документация, идеи.</p>
+
+      <div class="platforms">
+        <a href="https://github.com/b-e-n-z1342" target="_blank" class="platform-btn">GitHub</a>
+        <a href="https://gitlab.com/Quasar_benz" target="_blank" class="platform-btn">GitLab</a>
+        <a href="https://sourceforge.net/u/quasarbenz/profile" target="_blank" class="platform-btn">SourceForge</a>
+      </div>
+
+      <div class="instructions">
+        <p><strong>Процесс участия:</strong></p>
+        <ol>
+          <li>Форкните репозиторий на одной из платформ.</li>
+          <li>Изучите код и внесите необходимые изменения.</li>
+          <li>Отправьте вашу работу на модерацию через <strong>Issue</strong> в основной репозиторий (<code>b-e-n-z1342</code>) или по email: <a href="mailto:quasarfoks@proton.me">quasarfoks@proton.me</a>.</li>
+        </ol>
+        <p>Окончательное решение по принятию изменений принимает основной мейнтейнер — <code>b-e-n-z1342</code>.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById('join-modal');
+    const btn = document.getElementById('join-btn');
+    const close = document.getElementById('close-modal');
+
+    btn.onclick = () => modal.style.display = 'flex';
+    close.onclick = () => modal.style.display = 'none';
+    window.onclick = (e) => { if (e.target === modal) modal.style.display = 'none'; };
+  </script>
+</body>
+</html>
