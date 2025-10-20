@@ -15,7 +15,7 @@
       --card-bg: #121212;
       --text: #ffffff;
       --text-muted: #a0a0a0;
-      --accent: #6d5dfc;          /* ← ОСНОВНОЙ ЦВЕТ АКЦЕНТА (кнопки, подчёркивания) */
+      --accent: #6d5dfc;
       --accent-hover: #8a7dff;
       --border-radius: 16px;
       --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -232,7 +232,7 @@
       background: var(--card-bg);
       padding: 2.5rem;
       border-radius: var(--border-radius);
-      max-width: 600px;
+      max-width: 1000px;
       width: 90%;
       border: 1px solid rgba(255,255,255,0.1);
       position: relative;
@@ -260,12 +260,11 @@
       margin: 1.5rem 0;
     }
 
-    /* ——— ВОТ ЭТО МЕСТО ДЛЯ ЦВЕТА КНОПОК В МОДАЛКЕ ——— */
     .platform-btn {
       display: block;
       padding: 0.9rem;
       text-align: center;
-      background: var(--accent);          /* ← ИСПОЛЬЗУЕТ ОБЩИЙ АКЦЕНТ */
+      background: var(--accent);
       color: white;
       text-decoration: none;
       border-radius: 10px;
@@ -279,7 +278,6 @@
       transform: translateY(-2px);
       box-shadow: 0 6px 16px rgba(109, 93, 252, 0.3);
     }
-    /* ——— КОНЕЦ ——— */
 
     .instructions {
       color: var(--text-muted);
@@ -370,6 +368,37 @@
       color: var(--accent);
       background: rgba(109, 93, 252, 0.1);
     }
+
+    .contact-methods {
+      margin: 1.5rem 0;
+    }
+
+    .contact-btn {
+      display: inline-block;
+      padding: 0.8rem 1.5rem;
+      background: var(--accent);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: var(--transition);
+      margin-right: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .contact-btn:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+    }
+
+    .freedom-note {
+      background: rgba(109, 93, 252, 0.1);
+      padding: 1rem;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+      border-left: 4px solid var(--accent);
+    }
+
     @media (max-width: 768px) {
       header {
         padding: 1rem;
@@ -385,6 +414,12 @@
       .hero p {
         margin-left: auto;
         margin-right: auto;
+      }
+      .contact-btn {
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin-right: 0;
       }
     }
   </style>
@@ -452,8 +487,30 @@
   <div class="modal" id="join-modal">
     <div class="modal-content">
       <button class="close-modal" id="close-modal">&times;</button>
-      <h2>Как помочь проекту</h2>
-      <p>Донатов нет. Только физическая помощь: код, тесты, документация, идеи.</p>
+      <h2>Участие в QuasarFoks</h2>
+
+      <div class="freedom-note">
+        <p><strong>Это не работа — здесь свобода выбора!</strong><br>
+        Отделы существуют только для удобства организации. Ваше желание и хотение — на первом месте.</p>
+      </div>
+
+      <p><strong>Донатов нет</strong> — только физическая помощь: код, тесты, документация.</p>
+
+      <h3>Процесс участия:</h3>
+      <ol>
+        <li><strong>Напишите напрямую</strong> в личные сообщения</li>
+        <li><strong>Расскажите о своих интересах:</strong>
+          <ul>
+            <li>Хотите быть <strong>ближе к управлению</strong> — пройдём короткое собеседование</li>
+            <li>Вы <strong>энтузиаст</strong> — просто пришлите Patch-файл через Issue или почту</li>
+          </ul>
+        </li>
+      </ol>
+
+      <div class="contact-methods">
+        <a href="https://t.me/b_e_n_z1342" target="_blank" class="contact-btn">Telegram</a>
+        <a href="mailto:quasarfoks@proton.me" class="contact-btn">Email</a>
+      </div>
 
       <div class="platforms">
         <a href="https://github.com/b-e-n-z1342" target="_blank" class="platform-btn">GitHub</a>
@@ -462,13 +519,15 @@
       </div>
 
       <div class="instructions">
-        <p><strong>Процесс участия:</strong></p>
+        <p><strong>По форкам:</strong> делайте любые! Единственное ограничение — <strong>соблюдение лицензии исходного проекта</strong> (MIT, BSD, GPL, Apache). Для включения в <strong>main</strong> требуется модерация.</p>
+        <p><strong>Технический процесс:</strong></p>
         <ol>
-          <li>Форкните репозиторий на одной из платформ.</li>
-          <li>Изучите код и внесите необходимые изменения.</li>
-          <li>Отправьте вашу работу на модерацию через <strong>Issue</strong> в основной репозиторий (<code>b-e-n-z1342</code>) или по email: <a href="mailto:quasarfoks@proton.me">quasarfoks@proton.me</a>.</li>
+          <li>Форкните репозиторий на одной из платформ</li>
+          <li>Изучите код и внесите изменения</li>
+          <li>Отправьте работу через <strong>Issue</strong> или на email</li>
         </ol>
-        <p>Окончательное решение по принятию изменений принимает основной мейнтейнер — <code>b-e-n-z1342</code>.</p>
+
+        <p>Окончательное решение принимает <strong>b-e-n-z1342</strong>.</p>
       </div>
     </div>
   </div>
