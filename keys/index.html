@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PGP ключ - QuasarFoks</title>
+  <meta name="description" content="PGP/GPG ключ QuasarFoks для проверки подлинности">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #000;
+      --bg-soft: #0a0a0a;
+      --card-bg: #121212;
+      --text: #ffffff;
+      --text-muted: #a0a0a0;
+      --accent: #6d5dfc;
+      --accent-hover: #8a7dff;
+      --border-radius: 16px;
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 2.5rem;
+      background: rgba(10, 10, 10, 0.85);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    header img {
+      height: 36px;
+      transition: var(--transition);
+    }
+
+    header img:hover {
+      transform: scale(1.06);
+    }
+
+    .logo-text {
+      font-weight: 700;
+      font-size: 1.2rem;
+      background: linear-gradient(90deg, var(--accent), #a396ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      position: relative;
+      transition: var(--transition);
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* Mobile menu button */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Main Content */
+    .main-content {
+      margin-top: 100px;
+      padding: 2rem 5%;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .page-title {
+      text-align: center;
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .page-title::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: var(--accent);
+      margin: 0.75rem auto 0;
+      border-radius: 2px;
+    }
+
+    .page-subtitle {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      margin-bottom: 3rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* PGP Key Container */
+    .pgp-container {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 2.5rem;
+      margin-bottom: 3rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .pgp-info {
+      margin-bottom: 2rem;
+    }
+
+    .pgp-info h2 {
+      color: var(--accent);
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .pgp-info p {
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .key-block {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+      overflow-x: auto;
+    }
+
+    .key-block pre {
+      color: var(--text);
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+
+    .copy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.5rem;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-top: 1rem;
+    }
+
+    .copy-btn:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+    }
+
+    .instructions {
+      background: rgba(109, 93, 252, 0.1);
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin: 2rem 0;
+      border-left: 4px solid var(--accent);
+    }
+
+    .instructions h3 {
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .instructions ol {
+      padding-left: 1.5rem;
+    }
+
+    .instructions li {
+      margin-bottom: 0.5rem;
+      color: var(--text-muted);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      background: var(--bg-soft);
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      header {
+        padding: 1rem;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      nav {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: var(--bg-soft);
+        flex-direction: column;
+        padding: 2rem;
+        gap: 1rem;
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: var(--transition);
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+      }
+
+      nav.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .main-content {
+        margin-top: 80px;
+        padding: 1.5rem;
+      }
+
+      .pgp-container {
+        padding: 1.5rem;
+      }
+
+      .footer-links {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <img src="https://raw.githubusercontent.com/b-e-n-z1342/QuasarDEV-XLAM/main/logo.png" alt="QuasarFoks Logo">
+      <span class="logo-text">QuasarFoks</span>
+    </div>
+
+    <button class="mobile-menu-btn">☰</button>
+
+    <nav>
+      <a href="https://b-e-n-z1342.github.io/">Главная</a>
+      <a href="https://b-e-n-z1342.github.io/#projects">Проекты</a>
+      <a href="https://b-e-n-z1342.github.io/#community">Сообщество</a>
+      <a href="https://b-e-n-z1342.github.io/policy">Политика</a>
+      <a href="https://github.com/b-e-n-z1342">GitHub</a>
+      <a href="https://gitlab.com/users/Quasar_benz/projects">GitLab</a>
+    </nav>
+  </header>
+
+  <div class="main-content">
+    <h1 class="page-title">GPG ключ</h1>
+    <p class="page-subtitle">Публичный ключ для проверки подлинности подписей и шифрования</p>
+
+    <div class="pgp-container">
+      <div class="pgp-info">
+        <h2>Публичный GPG ключ QuasarFoks</h2>
+        <p>Используйте этот ключ для проверки подписей пакетов, репозиториев и других файлов, связанных с проектами QuasarFoks.</p>
+
+        <div class="key-block">
+          <pre id="pgp-key">
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+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
+TF02i9LwgFhUF39r
+=wHXe
+-----END PGP PUBLIC KEY BLOCK-----
+
+          </pre>
+        </div>
+
+        <button class="copy-btn" onclick="copyKey()">
+          📋 Скопировать ключ
+        </button>
+      </div>
+
+      <div class="instructions">
+        <h3>Как использовать этот ключ</h3>
+        <ol>
+          <li>Скопируйте ключ выше и импортируйте его в свою GPG связку: <code>gpg --import key.txt</code></li>
+          <li>Для проверки подписи файла используйте: <code>gpg --verify file.sig file</code></li>
+        </ol>
+      </div>
+
+      <div class="pgp-info">
+        <h2>Отпечаток ключа (Fingerprint)</h2>
+        <p>Для дополнительной проверки сверьте отпечаток ключа:</p>
+        <div class="key-block">
+          <pre id="key-fingerprint">
+1A62 2CA0 D0B5 136E CA0E  B64D 4737 1467 35F7 5844
+
+          </pre>
+        </div>
+        <button class="copy-btn" onclick="copyFingerprint()">
+          📋 Скопировать отпечаток
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-links">
+      <a href="https://b-e-n-z1342.github.io/QuasarLinux">QuasarLinux</a>
+      <a href="https://t.me/quasar_foks">Телеграм</a>
+      <a href="https://github.com/b-e-n-z1342">GitHub</a>
+      <a href="https://gitlab.com/users/Quasar_benz/projects">GitLab</a>
+      <a href="https://b-e-n-z1342.github.io/policy">Политика</a>
+      <a href="https://sourceforge.net/u/quasarbenz/profile">SourceForge</a>
+    </div>
+    <p>© 2025 QuasarFoks Community. Все проекты распространяются под открытыми лицензиями.</p>
+    <p style="margin-top: 1rem; font-size: 0.8rem; color: #666;">
+      Сделано с ❤️ для сообщества Open-Source
+    </p>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    document.addEventListener('DOMContentLoaded', function() {
+      const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+      const nav = document.querySelector('nav');
+
+      mobileMenuBtn.addEventListener('click', () => {
+        nav.classList.toggle('active');
+      });
+
+      // Close mobile menu when clicking on links
+      document.querySelectorAll('nav a').forEach(link => {
+        link.addEventListener('click', () => {
+          nav.classList.remove('active');
+        });
+      });
+    });
+
+    // Copy PGP key to clipboard
+    function copyKey() {
+      const keyText = document.getElementById('pgp-key').textContent;
+      navigator.clipboard.writeText(keyText).then(() => {
+        alert('PGP ключ скопирован в буфер обмена');
+      });
+    }
+
+    // Copy fingerprint to clipboard
+    function copyFingerprint() {
+      const fingerprintText = document.getElementById('key-fingerprint').textContent;
+      navigator.clipboard.writeText(fingerprintText).then(() => {
+        alert('Отпечаток ключа скопирован в буфер обмена');
+      });
+    }
+  </script>
+</body>
+</html>
